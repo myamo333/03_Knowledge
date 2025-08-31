@@ -259,6 +259,17 @@ def demo(
         lines = get_bev_lines(corners)
         for line in lines:
             plt.plot([-x for x in line[1]], line[0], c='g', label='prediction')
+        # 前方向を示す中心線（前端から半分だけ後ろ向きに）
+        front_center = (corners[0] + corners[1]) / 2
+        rear_center = (corners[2] + corners[3]) / 2
+
+        # 前端から後ろ方向に半分だけ伸ばす
+        vec = (rear_center - front_center) * 0.5
+        mid_back = front_center + vec
+
+        plt.plot([-mid_back[1], -front_center[1]],   # x軸反転
+                [mid_back[0], front_center[0]],     # y軸そのまま
+                c='g', lw=2)
 
     # Set legend
     handles, labels = plt.gca().get_legend_handles_labels()
