@@ -85,12 +85,13 @@ class DetNuscEvaluator():
         from nuscenes.eval.detection.evaluate import NuScenesEval
 
         output_dir = osp.join(*osp.split(result_path)[:-1])
-        nusc = NuScenes(version='v1.0-mini',
+        nusc = NuScenes(version='v1.0-test',
                         dataroot=self.data_root,
                         verbose=False)
         eval_set_map = {
             'v1.0-mini': 'mini_val',
             'v1.0-trainval': 'val',
+            'v1.0-test': 'test',
         }
         nusc_eval = NuScenesEval(nusc,
                                  config=self.eval_detection_configs,

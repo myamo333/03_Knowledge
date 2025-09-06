@@ -124,8 +124,9 @@ def get_cam_corners(corners, translation, rotation, cam_intrinsics):
 
 def demo(
     idx,
-    nusc_results_file,
+    results,
     dump_file,
+    infos,
     threshold=0.5,
     show_range=60,
     show_classes=[
@@ -146,10 +147,10 @@ def demo(
         'CAM_FRONT_LEFT', 'CAM_FRONT', 'CAM_FRONT_RIGHT', 'CAM_BACK_RIGHT',
         'CAM_BACK', 'CAM_BACK_LEFT'
     ]
-    infos = mmcv.load('data/nuScenes/nuscenes_infos_val.pkl')
+    # infos = mmcv.load('data/nuScenes/nuscenes_infos_test.pkl')
     assert idx < len(infos)
     # Get data from dataset
-    results = mmcv.load(nusc_results_file)['results']
+    # results = mmcv.load(nusc_results_file)['results']
     info = infos[idx]
     lidar_path = info['lidar_infos']['LIDAR_TOP']['filename']
     lidar_points = np.fromfile(os.path.join('data/nuScenes', lidar_path),
@@ -282,6 +283,7 @@ def demo(
     # Save figure
     plt.tight_layout(w_pad=0, h_pad=2)
     plt.savefig(dump_file)
+    plt.close()
 
 
 if __name__ == '__main__':

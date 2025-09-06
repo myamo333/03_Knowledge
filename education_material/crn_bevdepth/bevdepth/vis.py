@@ -7,18 +7,22 @@ from visualize_nusc import demo  # visualize_nusc.py 内の demo() を import
 
 # ----- 設定 -----
 results_file = './outputs/det/CRN_r50_256x704_128x128_4key/results_nusc.json'
-infos_file = 'data/nuScenes/nuscenes_infos_val.pkl'
+infos_file = 'data/nuScenes/nuscenes_infos_test.pkl'
 output_dir = './outputs/pngs'
+infos = mmcv.load('data/nuScenes/nuscenes_infos_test.pkl')
 os.makedirs(output_dir, exist_ok=True)
 
 # ----- NuScenes mini の情報読み込み -----
 infos = mmcv.load(infos_file)
 
+# ----- 結果 JSON を一度だけロード -----
+results = mmcv.load(results_file)['results']
+
 # ----- 1. PNG をループで生成 -----
 for idx, info in enumerate(infos):
     dump_file = os.path.join(output_dir, f'frame_{idx:03d}.png')
     print(f'Processing sample {idx} -> {dump_file}')
-    demo(idx, results_file, dump_file)
+    demo(idx, results, dump_file, infos)
 
 # ----- 2. PNG を MP4 にまとめる -----
 png_files = natsort.natsorted(glob.glob(os.path.join(output_dir, 'frame_*.png')))

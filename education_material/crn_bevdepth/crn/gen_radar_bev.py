@@ -11,15 +11,15 @@ from nuscenes.utils.data_classes import RadarPointCloud
 from nuscenes.utils.geometry_utils import transform_matrix, view_points
 
 
-SPLIT = 'v1.0-mini'
-DATA_PATH = 'data/nuScenes'
-OUT_PATH = 'radar_bev_filter'
-info_paths = ['data/nuScenes/nuscenes_infos_train.pkl', 'data/nuScenes/nuscenes_infos_val.pkl']
+# SPLIT = 'v1.0-trainval'
+# DATA_PATH = 'data/nuScenes'
+# OUT_PATH = 'radar_bev_filter'
+# info_paths = ['data/nuScenes/nuscenes_infos_train.pkl', 'data/nuScenes/nuscenes_infos_val.pkl']
 
-# SPLIT = 'v1.0-test'
-# DATA_PATH = 'data/nuScenes/v1.0-test'
-# OUT_PATH = 'radar_bev_filter_test'
-# info_paths = ['data/nuScenes/nuscenes_infos_test.pkl']
+SPLIT = 'v1.0-test'
+DATA_PATH = 'data/nuScenes/'
+OUT_PATH = 'radar_bev_filter_test'
+info_paths = ['data/nuScenes/nuscenes_infos_test.pkl']
 
 RADAR_CHAN = ['RADAR_FRONT', 'RADAR_FRONT_LEFT', 'RADAR_FRONT_RIGHT',
               'RADAR_BACK_LEFT', 'RADAR_BACK_RIGHT']
